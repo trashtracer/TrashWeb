@@ -1,42 +1,51 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import TeamView from '../views/TeamView.vue'
-import DownloadView from '../views/DownloadView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import NotFoundView from "../views/ErrorViews/404.vue";
+import HomeView from "../views/HomeView.vue";
+import LbView from "../views/LbView.vue";
+import UserProfileView from "../views/UserView.vue"
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: "/",
+    name: "home",
     meta: {
-      title: 'Home'
+      title: "Home",
     },
-    component: HomeView
+    component: HomeView,
   },
   {
-    path: '/team',
-    name: 'team',
+    path: "/lb",
+    name: "leaderboards",
     meta: {
-      title: 'Our team'
+      title: "Leaderboards",
     },
-    component: TeamView
+    component: LbView,
   },
   {
-    path: '/download',
-    name: 'download',
+    path: "/user/:id",
+    name: "userprofile",
     meta: {
-      title: 'Downloads'
+      title: "Player profile",
     },
-    component: DownloadView
+    component: UserProfileView,
   },
-]
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notfound",
+    meta: {
+      title: "Uh oh!",
+    },
+    component: NotFoundView,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);
   next();
 });
 
-export default router
+export default router;

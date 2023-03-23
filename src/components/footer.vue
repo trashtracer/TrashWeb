@@ -16,7 +16,6 @@ p {
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
-    margin-top: 30px;
     bottom: 0;
 }
 

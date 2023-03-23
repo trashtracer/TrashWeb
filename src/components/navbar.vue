@@ -3,11 +3,12 @@
         <div class="container" :class="mobileclass">
             <div class="left">
                 <RouterLink to='/' class="logo"><i class="fa-solid fa-recycle" :class="mobileclass"></i>
-                    <c :class="{ 'active': isCurrentRoute('/') }">TrashTracer</c>
+                    <c class="txtlogo" :class="{ 'active': isCurrentRoute('/') }">TrashTracer</c>
                 </RouterLink>
             </div>
             <div class="right">
-                <RouterLink to='/download'><i class="fa-solid fa-arrow-down downloadtext"></i>
+                <RouterLink to="/lb" class="button" :class="{ 'active': isCurrentRoute('/lb') }"><i class="fa-solid fa-trophy" style="padding: 3px;"></i><c v-if="state.isPC" style="padding-left: 5px;">Rankings</c></RouterLink>
+                <RouterLink to='/download' class="downloadbutton"><i class="fa-solid fa-arrow-down downloadtext"></i>
                     <c v-if="state.isPC" class="downloadtext">Download the app</c>
                 </RouterLink>
             </div>
@@ -55,7 +56,7 @@ export default {
     font-size: 18px;
     align-items: center;
     justify-content: space-between;
-
+    align-items: center;
 }
 
 .container.state-pc {
@@ -77,7 +78,7 @@ i.downloadtext {
     padding-left: 5px;
 }
 
-a {
+.downloadbutton {
     text-decoration: none;
     background-color: white;
     color: var(--text-black);
@@ -93,10 +94,6 @@ a {
     font-size: 25px;
 }
 
-.active {
-    color: var(--primary-color);
-}
-
 .downloadtext {
     margin-left: 10px;
 }
@@ -105,5 +102,32 @@ a {
     text-align: center;
     background-color: orange;
     padding: 5px;
+}
+
+.button {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 7px;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 1vw;
+}
+
+.button:hover {
+    background-color: rgba(131, 131, 131, 0.301);
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.txtlogo.active {
+    color: var(--primary-color);
+}
+
+.button.active {
+    background-color: rgba(131, 131, 131, 0.301);
 }
 </style>
