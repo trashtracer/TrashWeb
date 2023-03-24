@@ -19,7 +19,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 60px;
+    font-size: clamp(20px, 4vw, 60px);
     font-weight: bold;
     width: 100%;
     color: white;
@@ -34,7 +34,7 @@ h1 {
 }
 
 p {
-    font-size: 32px;
+    font-size: clamp(20px, 4vw, 30px);
     width: 80%;
 }
 

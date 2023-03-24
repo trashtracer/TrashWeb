@@ -28,11 +28,15 @@
                         <p>Total</p>
                     </div>
                 </div>
+                <div class="error" v-if="error">
+                    <i class="fa-solid fa-ban"></i>
+                    <p>Something is wrong with the TrashAPI, please notify an admin</p>
+                </div>
                 <div class="player" v-for="(player, index) in players" :key="index">
 
                     <div class="left">
                         <p>#{{ index + 1 }}</p>
-                        <RouterLink :to="`/user/${player.id}`">
+                        <RouterLink :to="`/user/${player.id}`" class="userlink">
                             <p>{{ player.name }}</p>
                         </RouterLink>
                     </div>
@@ -54,6 +58,7 @@ export default {
     data() {
         return {
             players: [],
+            error: false,
             selected: 'tot'
         }
     },
@@ -63,10 +68,13 @@ export default {
     methods: {
         async getData() {
             try {
+                this.players = [];
                 const response = await fetch(`https://api.trashtracer.lol/lb/${this.selected}`);
                 const data = await response.json();
+                this.error = false;
                 this.players = data;
             } catch (error) {
+                this.error = true;
                 console.error(error);
             }
         },
@@ -103,7 +111,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 60px;
+    font-size: clamp(50px, 4vw, 60px);
     font-weight: bold;
     width: 100%;
     color: white;
@@ -138,6 +146,15 @@ export default {
     text-align: center;
 }
 
+.error {
+    background: rgba(251, 63, 63, 0.295);
+    padding: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: var(--text-black);
+    border-radius: 15px;
+    text-align: center;
+}
 .player.guide {
     background: none;
 }
@@ -151,7 +168,7 @@ export default {
 .right {
     display: flex;
     width: 200px;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .selectorbutton,
@@ -180,5 +197,9 @@ button {
 
 .selectorbutton {
     width: 33%;
+}
+
+.userlink {
+    color: var(--text-black);
 }
 </style>

@@ -32,7 +32,7 @@ export default {
 }
 .title {
     text-align: center;
-    font-size: 60px;
+    font-size: clamp(50px, 4vw, 60px);
     margin-top: 15px;
 }
 
@@ -46,7 +46,7 @@ export default {
 .banner {
     display: flex;
     align-items: center;
-    font-size: 25px;
+    font-size: clamp(20px, 2vw, 50px);
     height: 400px;
     color: white;
 }
